@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        this._router.navigate(['/Perfil'])
+        // lima: Cambie el perfil por inicio
+        this._router.navigate(['/Inicio'])
       },
       error=>{
         Swal.fire({

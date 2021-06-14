@@ -9,6 +9,8 @@ import { PerfilComponent } from './component/perfil/perfil.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { InicioComponent } from './component/inicio/inicio.component';
+import { UsuariosComponent } from './component/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegistroComponent,
     PerfilComponent,
-    NavbarComponent
+    NavbarComponent,
+    InicioComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
