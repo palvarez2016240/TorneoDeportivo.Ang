@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './component/inicio/inicio.component';
 import { UsuariosComponent } from './component/usuarios/usuarios.component';
+import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UsuariosComponent } from './component/usuarios/usuarios.component';
     PerfilComponent,
     NavbarComponent,
     InicioComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    UsuarioAdminComponent
   ],
   imports: [
     BrowserModule,

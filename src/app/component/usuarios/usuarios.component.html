@@ -1,1 +1,168 @@
-<p>usuarios works!</p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <h1 class="display-3">USUARIOS</h1>
+
+
+
+
+
+        <div id="Tabladeusers" class="row row-cols-2   row-cols-md-3 row-cols-lg-5 row-cols-g-lg-3 row-cols-g-5">
+          <div class="col"  *ngFor="let usua of usuarios">
+            <div class="card text-white bg-dark mb-4 h-50">
+              <div class="card-body">
+                <br><br>
+
+                <h1 class="card-title">{{ usua.usuario }}</h1><br><br><br>
+                <div class="card-text">
+                  <div class="btn" role="group" aria-label="Basic example">
+                    <h5 *ngIf="(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )">ADMINISTRADOR</h5>
+                    <button type="button" class="btn btn-outline-dark"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
+                    data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
+                    <button type="button" class="btn btn-outline-dark"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
+                    data-bs-toggle="modal" data-bs-target="#EliminarUser">Eliminar</button>
+                    <button type="button" class="btn btn-outline-dark"  (click)="obtenerUsuarioId(usua._id)"
+                    data-bs-toggle="modal" data-bs-target="#verUsuario">Ver</button>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Modal Editar Usuario -->
+        <div class="modal fade" id="EditarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nombres</label>
+                    <input type="text" class="form-control"
+                    name="nombres" #nombres="ngModel" [(ngModel)]="usuarioIDModel.nombres">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control"
+                    name="apellidos" #apellidos="ngModel" [(ngModel)]="usuarioIDModel.apellidos">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Username</label>
+                    <input type="text" class="form-control"
+                    name="usuario" #usuario="ngModel" [(ngModel)]="usuarioIDModel.usuario">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Rol</label><br>
+
+                    <select  name="rol" #rol="ngModel" [(ngModel)]="usuarioIDModel.rol">
+
+                      <option>ROL_ADMINAPP</option>
+
+                      <option >ROL_USER</option>
+
+                    </select>
+
+
+
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control"
+                    name="email" #email="ngModel" [(ngModel)]="usuarioIDModel.email">
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="editarUser(usuarioIDModel._id)">Guardar Cambios</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Eliminar Usuario -->
+        <div class="modal fade" id="EliminarUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR PERFIL</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ¿Esta seguro de eliminar su cuenta? al eliminar se perderan todos sus datos y no podrá recuperarlos
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarUser(usuarioIDModel._id)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Modal Ver Usuario -->
+        <div class="modal fade" id="verUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">USUARIOS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nombres</label>
+                    <input type="text" class="form-control"
+                    name="nombres" #nombres="ngModel" [(ngModel)]="usuarioIDModel.nombres" disabled>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control"
+                    name="apellidos" #apellidos="ngModel" [(ngModel)]="usuarioIDModel.apellidos" disabled>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Username</label>
+                    <input type="text" class="form-control"
+                    name="usuario" #usuario="ngModel" [(ngModel)]="usuarioIDModel.usuario" disabled>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control"
+                    name="email" #email="ngModel" [(ngModel)]="usuarioIDModel.email" disabled>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+              </div>
+
+    </div>
+  </div>
+
