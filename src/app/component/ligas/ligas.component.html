@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h1 class="display-3">LIGAS</h1>
+      <button type="button" class="btn btn-outline-dark"
+               data-bs-toggle="modal" data-bs-target="#agregarLiga">AGREGAR LIGA</button>
+
+
+      <div id="Tabladeusers" class="row row-cols-2   row-cols-md-3 row-cols-lg-5 row-cols-g-lg-3 row-cols-g-5">
+        <div class="col"  *ngFor="let usua of liga">
+          <div class="card text-white bg-dark mb-4 h-50">
+            <div class="card-body">
+              <br><br>
+
+              <h1 class="card-title">{{ usua.nombres }}</h1><br><br><br>
+              <div class="card-text">
+                <div class="btn" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-outline-dark" (click)="vacio(usua._id)"
+                  data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="vacio(usua._id)"
+                  data-bs-toggle="modal" data-bs-target="#EliminarUser">Eliminar</button>
+                  <button type="button" class="btn btn-outline-dark"  (click)="vacio(usua._id)"
+                  data-bs-toggle="modal" data-bs-target="#verUsuario">Ver</button>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+        <!-- Modal agregar  Usuario -->
+        <div class="modal fade" id="agregarLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Nombres</label>
+                    <input type="text" class="form-control"
+                    name="nombres" #nombres="ngModel" [(ngModel)]="LigaModel.nombres">
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="AgregarLiga()">agregar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>

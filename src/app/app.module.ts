@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './component/inicio/inicio.component';
 import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.component';
+import { LigasComponent } from './component/ligas/ligas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.c
     NavbarComponent,
     InicioComponent,
     UsuariosComponent,
-    UsuarioAdminComponent
+    UsuarioAdminComponent,
+    LigasComponent
   ],
   imports: [
     BrowserModule,
