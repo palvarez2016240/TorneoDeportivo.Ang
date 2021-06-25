@@ -16,11 +16,14 @@ export class LigasComponent implements OnInit {
 
   public LigaModel:Liga;
   public liga
+  public ModelIdLiga
   constructor(
     private _LigasService: LigasService,
     private _router: Router
   ) {
     this.LigaModel = new Liga('','','')
+    this.ModelIdLiga = new Liga('','','')
+
   }
 
   ngOnInit(): void {
@@ -34,7 +37,7 @@ export class LigasComponent implements OnInit {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Usuario registrado correctamente',
+          title: 'Liga agregada',
           showConfirmButton: false,
           timer: 1500
         })
@@ -71,7 +74,7 @@ export class LigasComponent implements OnInit {
         Swal.fire({
           position: 'top-end',
           icon: 'error',
-          title: 'Usuario Eliminado',
+          title: 'Sin ligas',
           showConfirmButton: false,
           timer: 1500,
         });
@@ -79,7 +82,44 @@ export class LigasComponent implements OnInit {
     );
   }
 
+  obtenerLigaId(id) {
+    this._LigasService.ligaId(id).subscribe((response) => {
+      this.ModelIdLiga = response.ligaEncontrada;
+      console.log(response.ligaEncontrada);
+    });
+  }
 
+  EditarLiga(id) {
+    this._LigasService.EditarLiga(this.ModelIdLiga, id).subscribe(
+      (response) => {
+        console.log(response);
+        this.verLigas()
+      },
+      (error) => {
+        console.log(<any>error);
+      }
+    );
+  }
+
+  eliminarLiga(id) {
+    this._LigasService.EliminarLiga(id).subscribe(
+      (response) => {
+        console.log(response);
+        this.verLigas()
+
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    );
+  }
 
 
 }

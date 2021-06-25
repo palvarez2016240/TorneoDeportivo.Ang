@@ -30,6 +30,26 @@ export class LigasService {
     return this._http.post(this.ruta + '/Liga', params,{headers: headersToken})
   }
 
+  //ligaId
+
+  ligaId(id:String):Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+    return this._http.get(this.ruta + 'ligaId/' + id, {headers: headersToken})
+  }
+
+
+  EditarLiga(liga:Liga, id:String):Observable<any>{
+    let params = JSON.stringify(liga);
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+    return this._http.put(this.ruta + 'EditarLiga/'+ id, params, {headers: headersToken})
+  }
+
+  EliminarLiga(id:String):Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+    return this._http.delete(this.ruta + 'EliminarLiga/' + id, {headers: headersToken})
+  }
+
+
   obtenerToken(){
     var token2 = localStorage.getItem('token');
     if(token2 != 'undefined'){
