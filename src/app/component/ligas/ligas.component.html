@@ -19,8 +19,8 @@
                   data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
                   <button type="button" class="btn btn-outline-dark" (click)="obtenerLigaId(usua._id)"
                   data-bs-toggle="modal" data-bs-target="#EliminarLiga">Eliminar</button>
-                  <button type="button" class="btn btn-outline-dark"  (click)="obtenerLigaId(usua._id)"
-                  data-bs-toggle="modal" data-bs-target="#verUsuario">Administrar Liga</button>
+                  <button type="button" class="btn btn-outline-dark"
+                  [routerLink]="['/Torneos', usua._id]" data-bs-toggle="modal" >Administrar Liga</button>
                 </div>
               </div>
 

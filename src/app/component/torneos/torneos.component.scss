@@ -1,0 +1,82 @@
+img{
+  height:250px;
+  width:100%;
+}
+
+.imgcen{
+  margin: 5px
+}
+
+.btnSettings{
+  padding: 5px;
+  margin-left: 75%;
+}
+
+.bi-gear-fill{
+  font-size: 25px;
+}
+
+.bi-gear-fill:hover{
+  color: #ffa710;
+}
+
+.item{
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.item-card{
+  transition:0.5s;
+  cursor:pointer;
+}
+
+.item-card-title{
+  font-size:25px;
+  transition:1s;
+  cursor:pointer;
+  text-align: center;
+}
+
+.item-card-title i{
+  font-size:15px;
+  transition:1s;
+  cursor:pointer;
+  color:#ffa710
+}
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 10px 10px 8px rgba(0,0,0,0.3);
+}
+
+.card-text{
+  height:80px;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  transform: scale3d(0, 0, 1);
+  transition: transform .3s ease-out 0s;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+.card::before {
+  transform-origin: left top;
+}
+.card::after {
+  transform-origin: right bottom;
+}
+.card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+  transform: scale3d(1, 1, 1);
+}
+
+
+.cardEquipos{
+
+  float: left;
+}
+
+.card{
+  margin-right: 60px;
+}
+

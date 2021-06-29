@@ -13,6 +13,7 @@ import { InicioComponent } from './component/inicio/inicio.component';
 import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.component';
 import { LigasComponent } from './component/ligas/ligas.component';
+import { TorneosComponent } from './component/torneos/torneos.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LigasComponent } from './component/ligas/ligas.component';
     InicioComponent,
     UsuariosComponent,
     UsuarioAdminComponent,
-    LigasComponent
+    LigasComponent,
+    TorneosComponent
   ],
   imports: [
     BrowserModule,

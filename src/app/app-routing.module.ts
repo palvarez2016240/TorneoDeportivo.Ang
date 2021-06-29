@@ -6,6 +6,7 @@ import { RegistroComponent } from './component/registro/registro.component';
 import {InicioComponent } from './component/inicio/inicio.component';
 import { UsuariosComponent} from './component/usuarios/usuarios.component'
 import {LigasComponent} from './component/ligas/ligas.component';
+import { TorneosComponent } from './component/torneos/torneos.component';
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'Registro',component:RegistroComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "Inicio",component:InicioComponent},
   {path: "Usuarios", component:UsuariosComponent},
   {path: "Ligas", component:LigasComponent},
+  {path: "Torneos/:idLiga",component:TorneosComponent},
   {path:'**',component:LoginComponent}
 ];
 

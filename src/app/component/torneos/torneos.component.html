@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h1 class="display-3" *ngIf="ModelIdLiga">{{ModelIdLiga.nombres}}</h1>
+
+      <div class="container ">
+        <div class="row  row-cols-auto">
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+              data-bs-target="#agregarEquipo">AGREGAR
+              EQUIPO</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+              data-bs-target="#agregarLiga">AGREGAR
+              MARCADOR</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#agregarLiga">VER
+              TABLA
+            </button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+              data-bs-target="#agregarLiga">ESTADISTICAS
+            </button>
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+
+
+          <div class="cardEquipos">
+            <div class="container cardEquipos">
+
+              <div class="card item-card " style="width: 15rem;" *ngFor="let equipo of equipoList ">
+                <div class="btnSettings dropdown">
+                  <button type="button" class="btn" id="dropdownSettings" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-gear-fill"></i>
+                  </button>
+                  <ul class="dropdown-menu card-title" aria-labelledby="dropdownSettings">
+                    <li><a data-bs-toggle="modal" data-bs-target="#EditarHabitacion" class="dropdown-item">Subir
+                        imagen</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarEquipo" (click)="obtenerEquipoID(equipo._id)">Editar</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EliminarEquipo" (click)="obtenerEquipoID(equipo._id)" >Eliminar</a>
+                    </li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#AddHabitacion">Ver Detalles</a>
+                    </li>
+                  </ul>
+                </div>
+                <img class="imgcen" *ngIf="equipo.imagen" [src]=" this.url + '/obtenerImagenEquipo/' + equipo.imagen">
+                <img class="imgcen" *ngIf="equipo.imagen === null" src="assets/img/equipos/sin_logo.png">
+                <h5 class="item-card-title mt-3 mb-3">{{equipo.nombres}}</h5>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal AGREGAR EQUIPO -->
+<div class="modal fade " id="agregarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
+            <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="agregarEquipo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar EQUIPO -->
+<div class="modal fade " id="editarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
+            <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editarEquipo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar EQUIPO -->
+<div class="modal fade " id="EliminarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      <h1>¿Esta seguro de eliminar el equipo?</h1>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarEquipo()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,8 +21,8 @@ export class LigasComponent implements OnInit {
     private _LigasService: LigasService,
     private _router: Router
   ) {
-    this.LigaModel = new Liga('','','')
-    this.ModelIdLiga = new Liga('','','')
+    this.LigaModel = new Liga('','','','')
+    this.ModelIdLiga = new Liga('','','','')
 
   }
 
