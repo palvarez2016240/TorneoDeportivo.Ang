@@ -7,22 +7,22 @@
         <div class="row  row-cols-auto">
           <div class="col">
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-              data-bs-target="#agregarEquipo">AGREGAR
+              data-bs-target="#agregarEquipo" (click)="limpiarVariable()">AGREGAR
               EQUIPO</button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-              data-bs-target="#agregarLiga">AGREGAR
+              data-bs-target="">AGREGAR
               MARCADOR</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#agregarLiga">VER
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#">VER
               TABLA
             </button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-              data-bs-target="#agregarLiga">ESTADISTICAS
+              data-bs-target="#">ESTADISTICAS
             </button>
           </div>
         </div>
@@ -46,7 +46,7 @@
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarEquipo" (click)="obtenerEquipoID(equipo._id)">Editar</a></li>
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EliminarEquipo" (click)="obtenerEquipoID(equipo._id)" >Eliminar</a>
                     </li>
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#AddHabitacion">Ver Detalles</a>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">Ver Detalles</a>
                     </li>
                   </ul>
                 </div>
@@ -76,7 +76,7 @@
         <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
+            <input type="text" class="form-control"  name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
             <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
           </div>
         </form>
@@ -104,7 +104,7 @@
         <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
+            <input type="text" class="form-control"  name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
             <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
           </div>
         </form>
@@ -119,7 +119,7 @@
 </div>
 
 
-<!-- Modal Editar EQUIPO -->
+<!-- Modal Eliminar EQUIPO -->
 <div class="modal fade " id="EliminarEquipo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

@@ -18,6 +18,7 @@ export class TorneosComponent implements OnInit {
   idEquipo;
   ModelIdLiga;
   public equipoModel: Equipo;
+  public equipoIDModel:Equipo;
   public url;
   constructor(
     public _ligasService: LigasService,
@@ -25,6 +26,7 @@ export class TorneosComponent implements OnInit {
     public _activatedRoute: ActivatedRoute
   ) {
     this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', '');
+
     this.url = GLOBAL.url
   }
 
@@ -52,7 +54,9 @@ export class TorneosComponent implements OnInit {
 
   agregarEquipo() {
     this._equipoService.agregarEquipo(this.equipoModel,this.idLiga).subscribe(
+
       (response) => {
+        this.equipoModel.nombres = " "
         console.log(response);
         Swal.fire({
           position: 'top-end',
@@ -75,6 +79,10 @@ export class TorneosComponent implements OnInit {
         });
       }
     );
+  }
+
+  limpiarVariable(){
+    this.equipoModel.nombres = " "
   }
 
   obtenerEquipoID(id){
@@ -100,7 +108,7 @@ export class TorneosComponent implements OnInit {
           timer: 1500,
         });
         this.obtenerEquipoLiga(this.idLiga)
-
+        this.equipoModel.nombres = " "
       },
       (error) => {
         console.log(<any>error);
