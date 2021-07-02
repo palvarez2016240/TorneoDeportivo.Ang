@@ -41,8 +41,8 @@
                     <i class="bi bi-gear-fill"></i>
                   </button>
                   <ul class="dropdown-menu card-title" aria-labelledby="dropdownSettings">
-                    <li><a data-bs-toggle="modal" data-bs-target="#EditarHabitacion" class="dropdown-item">Subir
-                        imagen</a></li>
+                    <li><a data-bs-toggle="modal" data-bs-target="#SubirImagen"(click)="obtenerEquipoID(equipo._id)"
+                      class="dropdown-item" (click)="limpiarImagen()">Subir imagen</a></li>
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarEquipo" (click)="obtenerEquipoID(equipo._id)">Editar</a></li>
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EliminarEquipo" (click)="obtenerEquipoID(equipo._id)" >Eliminar</a>
                     </li>
@@ -50,7 +50,7 @@
                     </li>
                   </ul>
                 </div>
-                <img class="imgcen" *ngIf="equipo.imagen" [src]=" this.url + '/obtenerImagenEquipo/' + equipo.imagen">
+                <img class="imgcen" *ngIf="equipo.imagen" [src]=" this.url + 'obtenerImagenEquipo/' + equipo.imagen">
                 <img class="imgcen" *ngIf="equipo.imagen === null" src="assets/img/equipos/sin_logo.png">
                 <h5 class="item-card-title mt-3 mb-3">{{equipo.nombres}}</h5>
               </div>
@@ -135,6 +135,30 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarEquipo()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Subir EQUIPO -->
+<div class="modal fade " id="SubirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Default file input example</label>
+          <input class="form-control" (change)="inputEvento($event)" type="file" id="formFile">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="(subirImagen())">Subir Imagen</button>
       </div>
     </div>
   </div>

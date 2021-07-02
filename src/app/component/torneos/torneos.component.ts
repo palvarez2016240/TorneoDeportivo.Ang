@@ -4,13 +4,15 @@ import { Equipo } from 'src/app/model/equipo.model';
 import { EquipoService } from 'src/app/service/equipo.service';
 import { GLOBAL } from 'src/app/service/global.service';
 import { LigasService } from 'src/app/service/ligas.service';
+import { SubirImageService } from 'src/app/service/subirimagen.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-torneos',
   templateUrl: './torneos.component.html',
   styleUrls: ['./torneos.component.scss'],
-  providers: [EquipoService, LigasService],
+  providers: [EquipoService, LigasService,SubirImageService,UsuarioService],
 })
 export class TorneosComponent implements OnInit {
   equipoList;
@@ -20,13 +22,16 @@ export class TorneosComponent implements OnInit {
   public equipoModel: Equipo;
   public equipoIDModel:Equipo;
   public url;
+  public token;
   constructor(
     public _ligasService: LigasService,
+    private _usuarioService: UsuarioService,
     public _equipoService: EquipoService,
-    public _activatedRoute: ActivatedRoute
+    public _activatedRoute: ActivatedRoute,
+    private _subirService: SubirImageService
   ) {
     this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', '');
-
+    this.token = _usuarioService.obtenerToken()
     this.url = GLOBAL.url
   }
 
@@ -84,6 +89,10 @@ export class TorneosComponent implements OnInit {
   limpiarVariable(){
     this.equipoModel.nombres = " "
   }
+  limpiarImagen(){
+    this.equipoModel.imagen = " "
+  }
+
 
   obtenerEquipoID(id){
     this._equipoService.obtenerEquipoID(id).subscribe(
@@ -149,4 +158,19 @@ export class TorneosComponent implements OnInit {
       }
     )
   }
+
+
+  subirImagen(){
+    this._subirService.subirImagen(this.url + 'subirImagenEquipo/' + this.idEquipo, [], this.imagenASubir,this.token,
+    'imagen' ).then((resultado)=>{
+      console.log(resultado)
+      this.obtenerEquipoLiga(this.idLiga)
+    })
+  }
+
+  public imagenASubir: Array<File>;
+  inputEvento(fileInput:any){
+    this.imagenASubir = <Array<File>>fileInput.target.files;
+  }
+
 }
