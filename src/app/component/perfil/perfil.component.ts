@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario.model';
+import { GLOBAL } from 'src/app/service/global.service';
+import { SubirImageService } from 'src/app/service/subirimagen.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -8,15 +10,26 @@ import Swal from 'sweetalert2';
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss'],
-  providers: [UsuarioService],
+  providers: [UsuarioService,SubirImageService],
 })
 export class PerfilComponent implements OnInit {
   usuariosList;
   userActualizado;
   usuarioIDModel: Usuario;
   public identidad;
-  constructor(public _usuarioService: UsuarioService, private _router: Router) {
+  public Identidad;
+  public url;
+  public token;
+
+  constructor(
+    public _usuarioService: UsuarioService, private _router: Router,
+    private _subirService: SubirImageService
+
+    ) {
+    this.Identidad = _usuarioService.obtenerIdentidad()
     this.usuarioIDModel = new Usuario('', '', '', '', '', '', '', '');
+    this.token = _usuarioService.obtenerToken()
+    this.url = GLOBAL.url
   }
 
   ngOnInit(): void {}
@@ -61,5 +74,23 @@ export class PerfilComponent implements OnInit {
     );
   }
 
+  limpiarImagen(){
+    this.usuarioIDModel.imagen = " "
+  }
+
+  subirImagen(){
+    this._subirService.subirImagen(this.url + 'subirImagen', [], this.imagenASubir, this.token,
+    'imagen').then((resultado: any) => {
+      console.log(resultado);
+      this.identidad.imagen = resultado.usuarioEncontrado.imagen;
+      localStorage.setItem('identidad', JSON.stringify(this.identidad) );
+    })
+
+  }
+
+  public imagenASubir: Array<File>;
+  inputEvento(fileInput:any){
+    this.imagenASubir = <Array<File>>fileInput.target.files;
+  }
 
 }
