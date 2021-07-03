@@ -12,7 +12,7 @@
           </div>
           <div class="col">
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-              data-bs-target="">AGREGAR
+              data-bs-target="#AgregarMarcador">AGREGAR
               MARCADOR</button>
           </div>
           <div class="col">
@@ -30,11 +30,12 @@
       <br><br>
 
 
+      <div class="row row-cols-1 row-cols-md-3 g-3">
 
-          <div class="cardEquipos">
+          <div class="cardEquipos" *ngFor="let equipo of equipoList ">
             <div class="container cardEquipos">
 
-              <div class="card item-card " style="width: 15rem;" *ngFor="let equipo of equipoList ">
+              <div class="card item-card " style="width: 15rem;"  >
                 <div class="btnSettings dropdown">
                   <button type="button" class="btn" id="dropdownSettings" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -56,6 +57,8 @@
               </div>
             </div>
           </div>
+
+      </div>
     </div>
   </div>
 </div>
@@ -157,6 +160,89 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="(subirImagen())">Subir Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal AGREGAR Jornada -->
+<div class="modal fade " id="AgregarMarcador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Jornada  </label>
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jornada" #jornada="ngModel"   [(ngModel)]="jornadaModel.nombre">
+
+              <option  *ngFor="let jornada of jornadas" value="{{ jornada.i}}"  >{{ jornada.i}}  </option>
+
+            </select>
+
+
+
+          </div>
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Equipo 1</label>
+            <select  class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo" #Equipo="ngModel"   [(ngModel)]="jornadaModel.equipo1">
+
+              <option  *ngFor="let equipo of equipoList " value={{equipo._id}} >{{ equipo.nombres}}  </option>
+
+            </select>
+
+            <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+          </div>
+
+
+
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Goles </label>
+            <input type="text" class="form-control"  name="gol" #gol="ngModel" [(ngModel)]="jornadaModel.marcador1">
+            <div id="emailHelp" class="form-text">Ingrese los goles del equipo 1</div>
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Equipo 2</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="Equipo2" #Equipo2="ngModel"   [(ngModel)]="jornadaModel.equipo2">
+
+              <option  *ngFor="let equipo of equipoList " value={{equipo._id}} >{{ equipo.nombres}}  </option>
+
+            </select>
+
+            <div id="emailHelp" class="form-text">Elija el nombre del equipo</div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Goles </label>
+            <input type="text" class="form-control"  name="gol2" #gol2="ngModel" [(ngModel)]="jornadaModel.marcador2">
+            <div id="emailHelp" class="form-text">Ingrese los goles del equipo 2</div>
+          </div>
+
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="ingresarJornada()">Guardar</button>
       </div>
     </div>
   </div>

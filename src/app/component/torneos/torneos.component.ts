@@ -7,6 +7,7 @@ import { LigasService } from 'src/app/service/ligas.service';
 import { SubirImageService } from 'src/app/service/subirimagen.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
+import { jornada } from "src/app/model/jornada.model"
 
 @Component({
   selector: 'app-torneos',
@@ -20,7 +21,10 @@ export class TorneosComponent implements OnInit {
   idEquipo;
   ModelIdLiga;
   public equipoModel: Equipo;
+  public jornadaModel: jornada;
   public equipoIDModel:Equipo;
+  public jornadasNumero
+  public jornadas= [{i: 0}]
   public url;
   public token;
   constructor(
@@ -30,7 +34,8 @@ export class TorneosComponent implements OnInit {
     public _activatedRoute: ActivatedRoute,
     private _subirService: SubirImageService
   ) {
-    this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', '');
+    this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', ''),
+    this.jornadaModel = new jornada('','','',0,0)
     this.token = _usuarioService.obtenerToken()
     this.url = GLOBAL.url
   }
@@ -46,9 +51,30 @@ export class TorneosComponent implements OnInit {
   obtenerEquipoLiga(id) {
     this._equipoService.obtenerEquiposLiga(id).subscribe((response) => {
       this.equipoList = response.equipoEncontrado;
+
+      this.jornadasNumero = response.equipoEncontrado.length;
+      console.log(this.jornadasNumero)
+      this.obtenerNumerosdeJornada()
+
       console.log(response);
     });
   }
+
+
+
+  obtenerNumerosdeJornada(){
+    console.log(this.jornadasNumero)
+
+    for(var i=1; i < this.jornadasNumero ; i++){
+      this.jornadas[i-1] = {i}
+
+    }
+
+    console.log(this.jornadas)
+
+  }
+
+
 
   obtenerLigaId(id) {
     this._ligasService.ligaId(id).subscribe((response) => {
@@ -70,7 +96,7 @@ export class TorneosComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        this.obtenerEquipoLiga(this.idLiga)
+        location.reload();
         this.equipoModel.nombres = " "
       },
       (error) => {
@@ -85,6 +111,45 @@ export class TorneosComponent implements OnInit {
       }
     );
   }
+
+
+
+  ingresarJornada() {
+
+    this._equipoService.ingresarJornada(this.jornadaModel,this.idLiga).subscribe(
+
+      (response) => {
+        this.equipoModel.nombres = " "
+        console.log(response);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Marcador Creado ',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.obtenerEquipoLiga(this.idLiga)
+        this.equipoModel.nombres = " "
+      },
+      (error) => {
+
+
+
+        console.log(<any>error);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: error.error.mensaje,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    );
+  }
+
+
+
+
 
   limpiarVariable(){
     this.equipoModel.nombres = " "
@@ -143,7 +208,7 @@ export class TorneosComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        this.obtenerEquipoLiga(this.idLiga)
+        location.reload();
 
       },
       (error) => {

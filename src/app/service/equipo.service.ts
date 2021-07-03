@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Equipo } from '../model/equipo.model';
 import { GLOBAL } from './global.service';
+import { jornada } from "../model/jornada.model"
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +52,17 @@ export class EquipoService {
     }
     return this.token;
   }
+
+
+
+
+//jornada
+
+ingresarJornada(jornada: jornada, idLiga):Observable<any>{
+  let params = JSON.stringify(jornada)
+  let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+  return this._http.post(this.ruta + '/ingresarJornada/' + idLiga , params, {headers: headersToken})
+}
+
 }
 
