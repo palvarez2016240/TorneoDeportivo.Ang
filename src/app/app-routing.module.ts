@@ -7,6 +7,7 @@ import {InicioComponent } from './component/inicio/inicio.component';
 import { UsuariosComponent} from './component/usuarios/usuarios.component'
 import {LigasComponent} from './component/ligas/ligas.component';
 import { TorneosComponent } from './component/torneos/torneos.component';
+import { EstadisticasComponent} from './component/estadisticas/estadisticas.component';
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'Registro',component:RegistroComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: "Usuarios", component:UsuariosComponent},
   {path: "Ligas", component:LigasComponent},
   {path: "Torneos/:idLiga",component:TorneosComponent},
+  {path: "Estadisticas/:idLiga",component: EstadisticasComponent},
+
   {path:'**',component:LoginComponent}
 ];
 

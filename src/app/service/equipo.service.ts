@@ -54,6 +54,12 @@ export class EquipoService {
   }
 
 
+  tabla(id :String):Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+
+    return this._http.get(this.ruta + '/tabla/' + id, {headers: headersToken})
+  }
+
 
 
 //jornada

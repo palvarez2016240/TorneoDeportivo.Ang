@@ -14,6 +14,10 @@ import { UsuariosComponent } from './component/usuarios/usuarios.component';
 import { UsuarioAdminComponent } from './component/usuario-admin/usuario-admin.component';
 import { LigasComponent } from './component/ligas/ligas.component';
 import { TorneosComponent } from './component/torneos/torneos.component';
+import { ChartsModule } from 'ng2-charts';
+import { EstadisticasComponent } from './component/estadisticas/estadisticas.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,13 +30,15 @@ import { TorneosComponent } from './component/torneos/torneos.component';
     UsuariosComponent,
     UsuarioAdminComponent,
     LigasComponent,
-    TorneosComponent
+    TorneosComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

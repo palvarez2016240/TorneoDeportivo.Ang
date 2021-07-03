@@ -24,6 +24,7 @@ export class TorneosComponent implements OnInit {
   public jornadaModel: jornada;
   public equipoIDModel:Equipo;
   public jornadasNumero
+  public tablas
   public jornadas= [{i: 0}]
   public url;
   public token;
@@ -34,6 +35,8 @@ export class TorneosComponent implements OnInit {
     public _activatedRoute: ActivatedRoute,
     private _subirService: SubirImageService
   ) {
+    this.tablas = new Equipo('', '', 0, 0, 0, 0, 0, '', '', ''),
+
     this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', ''),
     this.jornadaModel = new jornada('','','',0,0)
     this.token = _usuarioService.obtenerToken()
@@ -46,6 +49,7 @@ export class TorneosComponent implements OnInit {
     });
     this.obtenerEquipoLiga(this.idLiga);
     this.obtenerLigaId(this.idLiga)
+    this.tabla(this.idLiga)
   }
 
   obtenerEquipoLiga(id) {
@@ -59,6 +63,14 @@ export class TorneosComponent implements OnInit {
       console.log(response);
     });
   }
+
+  tabla(id) {
+    this._equipoService.tabla(id).subscribe((response) => {
+        this.tablas = response.tablaDeEquipos
+      console.log(response);
+    });
+  }
+
 
 
 

@@ -16,14 +16,15 @@
               MARCADOR</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#">VER
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#tabla">VER
               TABLA
             </button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-              data-bs-target="#">ESTADISTICAS
-            </button>
+
+            [routerLink]="['/Estadisticas', idLiga ]" data-bs-toggle="modal" >Estadisticas</button>
+
           </div>
         </div>
       </div>
@@ -247,3 +248,61 @@
     </div>
   </div>
 </div>
+
+
+
+
+<!-- ver modal ver clasificacion -->
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="tabla">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">MARDACOR</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table" >
+          <caption>GF= golesAfavor, GC= goles en contra, DG= diferencia de goles, P= partidos jugados, Pts = puntos </caption>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+
+              <th scope="col">Equipos</th>
+              <th scope="col">GF</th>
+              <th scope="col">GC</th>
+              <th scope="col">DG</th>
+              <th scope="col">P</th>
+              <th scope="col">Pts</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let equipo of tablas ">
+              <td>
+               <img class="imgcen" *ngIf="equipo.imagen" [src]=" this.url + 'obtenerImagenEquipo/' + equipo.imagen">
+                <img class="imgcen" *ngIf="equipo.imagen === null" src="assets/img/equipos/sin_logo.png"></td>
+              <td>{{equipo.nombres}}</td>
+              <td>{{equipo.golesAfavor}}</td>
+              <td>{{equipo.golesEncontra}}</td>
+              <td>{{equipo.diferenciaGoles}}</td>
+              <td>{{equipo.partidosJugados}}</td>
+              <td>{{equipo.pts}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

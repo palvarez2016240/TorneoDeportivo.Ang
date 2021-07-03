@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h1 class="display-3">GANADOR</h1>
+
+
+
+
+    <div class="cardEquipos" >
+      <div class="container cardEquipos">
+
+        <div class="card item-card " style="width: 15rem;"  >
+          <div class="btnSettings dropdown">
+            <button type="button" class="btn" id="dropdownSettings" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-gear-fill"></i>
+            </button>
+
+          </div>
+          <img class="imgcen" *ngIf="Ganador.imagen" [src]=" this.url + 'obtenerImagenEquipo/' + Ganador.imagen">
+          <img class="imgcen" *ngIf="Ganador.imagen === null" src="assets/img/equipos/sin_logo.png">
+          <h5 class="display-5" >{{Ganador.nombres}}</h5>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    </div>
+    <div class="col-sm">
+      <div style="display: block">
+        <h1 class="display-3">PUNTOS</h1>
+
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+          ></canvas>
+      </div>    </div>
+  </div>
+  </div>
