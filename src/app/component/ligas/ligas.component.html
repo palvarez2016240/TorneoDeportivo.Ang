@@ -2,110 +2,133 @@
   <div class="row">
     <div class="col-sm">
       <h1 class="display-3">LIGAS</h1>
-      <button type="button" class="btn btn-outline-dark"
-               data-bs-toggle="modal" data-bs-target="#agregarLiga">AGREGAR LIGA</button>
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#agregarLiga">AGREGAR
+        LIGA</button>
+      <br><br><br>
 
 
-      <div id="Tabladeusers" class="row row-cols-2   row-cols-md-3 row-cols-lg-5 row-cols-g-lg-3 row-cols-g-5">
-        <div class="col"  *ngFor="let usua of liga">
-          <div class="card text-white bg-dark mb-4 h-50">
-            <div class="card-body">
-              <br><br>
+      <div class="card" style="width: 18rem;" *ngFor="let usua of liga">
+        <img *ngIf="usua.imagen" [src]="this.url + 'obtenerImagenLiga/'+ usua.imagen" class="card-img-top" alt="...">
+        <img *ngIf="usua.imagen === null" src="/assets/img/equipos/sin_logo.png" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title">{{ usua.nombres }}</h5>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" (click)="obtenerLigaId(usua._id)"
+            data-bs-toggle="modal" data-bs-target="#EditarUser"><i class="bi bi-pencil-square"></i></button>
+            <button type="button" class="btn btn-primary" (click)="obtenerLigaId(usua._id)"
+            data-bs-toggle="modal" data-bs-target="#EliminarLiga"><i class="bi bi-trash"></i></button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#SubirImagen" (click)="obtenerLigaId(usua._id)" (click)="limpiarImagen()"><i class="bi bi-images"></i></button>
+            <button type="button" class="btn btn-primary"  [routerLink]="['/Torneos', usua._id]"
+            data-bs-toggle="modal"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+      </div>
 
-              <h1 class="card-title">{{ usua.nombres }}</h1><br><br><br>
-              <div class="card-text">
-                <div class="btn" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-outline-dark" (click)="obtenerLigaId(usua._id)"
-                  data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
-                  <button type="button" class="btn btn-outline-dark" (click)="obtenerLigaId(usua._id)"
-                  data-bs-toggle="modal" data-bs-target="#EliminarLiga">Eliminar</button>
-                  <button type="button" class="btn btn-outline-dark"
-                  [routerLink]="['/Torneos', usua._id]" data-bs-toggle="modal" >Administrar Liga</button>
+
+      <!--SUBIR IMAGEN LIGA-->
+      <div class="modal fade " id="SubirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">INGRESAR EQUIPO</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" (change)="inputEvento($event)" type="file" id="formFile">
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="(subirImagen())">Subir Imagen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal agregar  Liga -->
+      <div class="modal fade" id="agregarLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Nombres</label>
+                  <input type="text" class="form-control" name="nombres" #nombres="ngModel"
+                    [(ngModel)]="LigaModel.nombres">
                 </div>
-              </div>
 
+              </form>
 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
+                (click)="AgregarLiga()">agregar</button>
             </div>
           </div>
         </div>
-
       </div>
 
 
-        <!-- Modal agregar  Liga -->
-        <div class="modal fade" id="agregarLiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
+      <div class="modal fade" id="EditarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nombres</label>
-                    <input type="text" class="form-control"
-                    name="nombres" #nombres="ngModel" [(ngModel)]="LigaModel.nombres">
-                  </div>
+              <form>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Nombres</label>
+                  <input type="text" class="form-control" name="nombre" #nombre="ngModel"
+                    [(ngModel)]="ModelIdLiga.nombres">
+                </div>
 
-                </form>
+              </form>
 
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="AgregarLiga()">agregar</button>
-              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
+                (click)="EditarLiga(ModelIdLiga._id)">Guardar Cambios</button>
             </div>
           </div>
         </div>
+      </div>
 
 
-        <div class="modal fade" id="EditarUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-
-                <form>
-                  <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Nombres</label>
-                    <input type="text" class="form-control"
-                    name="nombre" #nombre="ngModel" [(ngModel)]="ModelIdLiga.nombres">
-                  </div>
-                </form>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="EditarLiga(ModelIdLiga._id)">Guardar Cambios</button>
-              </div>
+      <!--MODAL ELIMINAR Liga-->
+      <div class="modal fade" id="EliminarLiga" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR PERFIL</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ¿Esta seguro de eliminar la liga? al eliminar se perderan todos los datos y no podrá recuperarlos
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                (click)="eliminarLiga(ModelIdLiga._id)">Eliminar</button>
             </div>
           </div>
         </div>
-
-
-<!--MODAL ELIMINAR Liga-->
-<div class="modal fade" id="EliminarLiga" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR PERFIL</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ¿Esta seguro de eliminar la liga? al eliminar se perderan todos los datos y no podrá recuperarlos
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarLiga(ModelIdLiga._id)">Eliminar</button>
       </div>
     </div>
-  </div>
-</div>
-      </div>
   </div>
 </div>

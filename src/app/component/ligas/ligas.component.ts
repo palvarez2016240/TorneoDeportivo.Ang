@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Liga } from 'src/app/model/liga.model';
+import { GLOBAL } from 'src/app/service/global.service';
 import { LigasService } from 'src/app/service/ligas.service';
+import { SubirImageService } from 'src/app/service/subirimagen.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 import Swal from 'sweetalert2';
 
@@ -9,21 +12,27 @@ import Swal from 'sweetalert2';
   selector: 'app-ligas',
   templateUrl: './ligas.component.html',
   styleUrls: ['./ligas.component.scss'],
-  providers: [LigasService]
+  providers: [LigasService,SubirImageService,UsuarioService]
 
 })
 export class LigasComponent implements OnInit {
 
   public LigaModel:Liga;
   public liga
-  public ModelIdLiga
+  public ModelIdLiga;
+  public token;
+  public url;
+  public idL;
   constructor(
     private _LigasService: LigasService,
+    private _usuarioService: UsuarioService,
+    private _SubirService: SubirImageService,
     private _router: Router
   ) {
     this.LigaModel = new Liga('','','','')
     this.ModelIdLiga = new Liga('','','','')
-
+    this.token = _usuarioService.obtenerToken()
+    this.url = GLOBAL.url
   }
 
   ngOnInit(): void {
@@ -85,6 +94,7 @@ export class LigasComponent implements OnInit {
   obtenerLigaId(id) {
     this._LigasService.ligaId(id).subscribe((response) => {
       this.ModelIdLiga = response.ligaEncontrada;
+      this.idL = response.ligaEncontrada._id
       console.log(response.ligaEncontrada);
     });
   }
@@ -121,5 +131,21 @@ export class LigasComponent implements OnInit {
     );
   }
 
+  limpiarImagen(){
+    this.LigaModel.imagen = " "
+  }
+
+  subirImagen(){
+    this._SubirService.subirImagen(this.url + 'subirImagenLiga/' + this.idL , [], this.imagenASubir, this.token,
+    'imagen').then((resultado)=>{
+      console.log(resultado)
+      this.verLigas()
+    })
+  }
+
+  public imagenASubir: Array<File>;
+  inputEvento(fileInput:any){
+    this.imagenASubir = <Array<File>>fileInput.target.files;
+  }
 
 }
