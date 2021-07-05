@@ -25,7 +25,7 @@ export class LigasComponent implements OnInit {
   public idL;
   constructor(
     private _LigasService: LigasService,
-    private _usuarioService: UsuarioService,
+    public _usuarioService: UsuarioService,
     private _SubirService: SubirImageService,
     private _router: Router
   ) {
@@ -107,6 +107,11 @@ export class LigasComponent implements OnInit {
       },
       (error) => {
         console.log(<any>error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.error.mensaje,
+        })
       }
     );
   }
@@ -114,9 +119,15 @@ export class LigasComponent implements OnInit {
   eliminarLiga(id) {
     this._LigasService.EliminarLiga(id).subscribe(
       (response) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Liga eliminada',
+          showConfirmButton: false,
+          timer: 1500
+        })
         console.log(response);
         this.verLigas()
-
       },
       (error) => {
         console.log(error);
@@ -140,7 +151,15 @@ export class LigasComponent implements OnInit {
     'imagen').then((resultado)=>{
       console.log(resultado)
       this.verLigas()
-    })
+    },
+    (error)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Tipo de archivo no permitida',
+      })
+    }
+    )
   }
 
   public imagenASubir: Array<File>;
@@ -148,4 +167,7 @@ export class LigasComponent implements OnInit {
     this.imagenASubir = <Array<File>>fileInput.target.files;
   }
 
+  limpiarLabel(){
+    this.LigaModel.nombres = '';
+  }
 }

@@ -47,9 +47,6 @@
                       class="dropdown-item" (click)="limpiarImagen()">Subir imagen</a></li>
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editarEquipo" (click)="obtenerEquipoID(equipo._id)">Editar</a></li>
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#EliminarEquipo" (click)="obtenerEquipoID(equipo._id)" >Eliminar</a>
-                    </li>
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#">Ver Detalles</a>
-                    </li>
                   </ul>
                 </div>
                 <img class="imgcen" *ngIf="equipo.imagen" [src]=" this.url + 'obtenerImagenEquipo/' + equipo.imagen">
@@ -77,9 +74,10 @@
 
         <form>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <label for="text" class="form-label">Nombre</label>
+            <!--<input type="text" class="form-control"  name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">-->
             <input type="text" class="form-control"  name="nombres" #nombres="ngModel" [(ngModel)]="equipoModel.nombres">
-            <div id="emailHelp" class="form-text">Ingrese el nombre del equipo</div>
+            <div id="text" class="form-text">Ingrese el nombre del equipo</div>
           </div>
         </form>
 

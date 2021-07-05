@@ -25,7 +25,7 @@
               <button type="submit" class="btn btn-block" data-bs-toggle="modal"
               data-bs-target="#EditarUser" (click)="obtenerUsuarioId(_usuarioService.obtenerIdentidad()._id)">Editar Perfil</button>
               <button type="submit" class="btn btn-block" data-bs-toggle="modal"
-              data-bs-target="#EliminarUser">Eliminar Perfil</button>
+              data-bs-target="#EliminarUser" *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USER'">Eliminar Perfil</button>
             </div>
             <br>
           </form>

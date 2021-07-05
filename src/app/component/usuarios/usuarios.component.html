@@ -20,7 +20,7 @@
                     <h5 *ngIf="(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )">ADMINISTRADOR</h5>
                     <button type="button" class="btn btn-outline-dark"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
-                    <button type="button" class="btn btn-outline-dark"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
+                    <button type="button" class="btn btn-outline-dark"*ngIf="usua.rol === 'ROL_USER' && !(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#EliminarUser">Eliminar</button>
                     <button type="button" class="btn btn-outline-dark"  (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#verUsuario">Ver</button>

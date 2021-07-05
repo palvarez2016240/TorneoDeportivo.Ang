@@ -38,7 +38,7 @@ export class TorneosComponent implements OnInit {
     this.tablas = new Equipo('', '', 0, 0, 0, 0, 0, '', '', ''),
 
     this.equipoModel = new Equipo('', '', 0, 0, 0, 0, 0, '', '', ''),
-    this.jornadaModel = new jornada('','','',0,0)
+    this.jornadaModel = new jornada('','','',0,0),
     this.token = _usuarioService.obtenerToken()
     this.url = GLOBAL.url
   }
@@ -131,7 +131,6 @@ export class TorneosComponent implements OnInit {
     this._equipoService.ingresarJornada(this.jornadaModel,this.idLiga).subscribe(
 
       (response) => {
-        this.equipoModel.nombres = " "
         console.log(response);
         Swal.fire({
           position: 'top-end',
@@ -141,7 +140,7 @@ export class TorneosComponent implements OnInit {
           timer: 1500,
         });
         this.obtenerEquipoLiga(this.idLiga)
-        this.equipoModel.nombres = " "
+        window.location.reload()
       },
       (error) => {
 
@@ -164,10 +163,10 @@ export class TorneosComponent implements OnInit {
 
 
   limpiarVariable(){
-    this.equipoModel.nombres = " "
+    this.equipoModel.nombres = ""
   }
   limpiarImagen(){
-    this.equipoModel.imagen = " "
+    this.equipoModel.imagen = ""
   }
 
 
