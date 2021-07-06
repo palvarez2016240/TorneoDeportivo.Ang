@@ -60,6 +60,13 @@ export class EquipoService {
     return this._http.get(this.ruta + '/tabla/' + id, {headers: headersToken})
   }
 
+  llamarPDF(id :String):Observable<any>{
+    let headersToken = this.headersVariable.set('Authorization', this.obtenerToken());
+
+    return this._http.get(this.ruta + '/llamarPDF/' + id, {headers: headersToken})
+  }
+
+
 
 
 //jornada

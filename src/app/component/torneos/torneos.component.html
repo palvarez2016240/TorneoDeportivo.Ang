@@ -26,6 +26,13 @@
             [routerLink]="['/Estadisticas', idLiga ]" data-bs-toggle="modal" >Estadisticas</button>
 
           </div>
+
+          <div class="col">
+
+            <a class="btn btn-danger"(click)="llamarPDF(idLiga)" id="descargar" href="/assets/TablaEstadisticas.pdf" download="Estadisticas.pdf" >Decargar Pdf</a>
+
+          </div>
+
         </div>
       </div>
       <br><br>

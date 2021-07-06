@@ -73,7 +73,11 @@ export class TorneosComponent implements OnInit {
 
 
 
-
+  llamarPDF(id) {
+    this._equipoService.llamarPDF(id).subscribe((response) => {
+      console.log(response);
+    });
+  }
   obtenerNumerosdeJornada(){
     console.log(this.jornadasNumero)
 
