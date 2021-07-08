@@ -176,3 +176,21 @@
   color: white;
   background: hsla(195, 78%, 54%, 1);
 }
+
+.infinity-image-container {
+  background: url("/assets/img/registro.jpg") center no-repeat;
+  background-size: cover;
+  height: 117vh;
+}
+
+.boton{
+  background: green;
+}
+
+.register-link{
+  color: #1BBC9B;
+}
+
+.register-link:hover{
+  color: #2D3E50;
+}

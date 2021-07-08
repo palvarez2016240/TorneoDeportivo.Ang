@@ -1,0 +1,140 @@
+.t {
+  text-align: center;
+  font-size: 60px;
+  padding-top: 20px;
+}
+
+hr {
+  background-color: black;
+  padding: 0;
+  margin: 0px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.bloque{
+  background-color: black;
+  width: 200px;
+  margin-left: 300px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+}
+
+.head{
+  text-align: center;
+  padding: 15px;
+  border-radius: 12px;
+  background-color: orange;
+  color: white;
+}
+
+/* Float four columns side by side /
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 0 10px;
+}
+
+/ Remove extra left and right margins, due to padding /
+.row {
+  margin: 0 -5px;
+}
+
+/ Clear floats after the columns /
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/ Responsive columns /
+@media screen and (max-width: 670px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/ Style the counter cards */
+.card {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 360px;
+  margin: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.45);
+  text-align: left;
+  background-color: #f1f1f1;
+  transition: transform 330ms ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .course-description {
+  height: 50%;
+  width: 100%;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #ffffff48;
+}
+
+.card .course-description h3 {
+  font-size: 24px;
+  color: white;
+}
+
+.card .course-description p {
+  font-size: 16px;
+  color: white;
+}
+
+.one {
+  background-color: #2D3E50;
+  text-align: center;
+  height: 210px;
+}
+
+.one:hover{
+  background-color: #58799D;
+  border-radius: 15px;
+}
+
+.two {
+  background-color: aquamarine;
+}
+
+.three {
+  background-color: cadetblue;
+}

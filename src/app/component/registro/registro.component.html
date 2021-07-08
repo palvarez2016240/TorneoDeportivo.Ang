@@ -1,15 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="contenedor">
-      <div class="caja1"></div>
-      <div class="caja2"></div>
-    </div>
+    <div class="col-lg-6 col-md-6 d-none d-md-block infinity-image-container"></div>
     <div class="col-lg-6 col-md-6 infinity-form-container">
       <div class="col-lg-9 col-md-12 col-sm-8 col-xs-12 infinity-form">
         <div class="text-center mb-3 mt-5">
-          <figure id="imagen">
-            <img src="/assets/img/Logo.jpeg" width="150px">
-            </figure>
+          <img src="/assets/img/1.png" width="110px">
         </div>
         <div class="text-center mb-4">
           <h4>Registro</h4>
@@ -40,8 +35,8 @@
             <input type="password" name="" placeholder="Contraseña" name="password" #password="ngModel"
             [(ngModel)]="usuarioModel.password" required>
           </div>
-          <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-block" (click)="registrar()">Registrar</button>
+          <div class="btn7 d-grid gap-2">
+            <button type="submit" class="boton btn btn-block" (click)="registrar()">Registrar</button>
           </div>
           <br>
           <div class="text-center mb-5" style="color: #777;">Ya tienes una cuenta?

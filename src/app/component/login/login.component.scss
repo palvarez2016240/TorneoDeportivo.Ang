@@ -177,3 +177,18 @@ body{
   color: white;
   background: hsla(195, 78%, 54%, 1);
 }
+
+.infinity-image-container {
+  background: url("/assets/img/login.jpg") center no-repeat;
+  background-size: cover;
+  height: 107vh;
+  position: relative;
+}
+
+.register-link{
+  color: #1BBC9B;
+}
+
+.register-link:hover{
+  color: #2D3E50;
+}

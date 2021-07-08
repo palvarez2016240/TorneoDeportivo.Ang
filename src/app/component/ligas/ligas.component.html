@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <a class="btn btn-primary" href="javascript:window.history.go(-1);">Regresar</a>
-      <h1 class="display-3">LIGAS</h1>
+      <a class="back btn-primary" href="javascript:window.history.go(-1);"><i class="bi bi-arrow-left"></i></a>
+      <h1 class="t">Ligas</h1>
       <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#agregarLiga"
        (click)='limpiarLabel()'>AGREGAR LIGA</button>
       <br><br><br>
@@ -10,17 +10,17 @@
 
       <div class="card" style="width: 18rem;" *ngFor="let usua of liga">
         <img *ngIf="usua.imagen" [src]="this.url + 'obtenerImagenLiga/'+ usua.imagen" class="card-img-top" alt="...">
-        <img *ngIf="usua.imagen === null" src="/assets/img/equipos/sin_logo.png" class="card-img-top" alt="...">
+        <img *ngIf="usua.imagen === null" src="/assets/img/equipos/sin_logo.png" class="imgs card-img-top" alt="...">
         <div class="card-body" >
           <h5 class="card-title">{{ usua.nombres }}</h5>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" (click)="obtenerLigaId(usua._id)"
+          <div class="btn-group h" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-secondary" (click)="obtenerLigaId(usua._id)"
             data-bs-toggle="modal" data-bs-target="#EditarUser"><i class="bi bi-pencil-square"></i></button>
-            <button type="button" class="btn btn-primary" (click)="obtenerLigaId(usua._id)"
+            <button type="button" class="btn btn-outline-secondary" (click)="obtenerLigaId(usua._id)"
             data-bs-toggle="modal" data-bs-target="#EliminarLiga"><i class="bi bi-trash"></i></button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
             data-bs-target="#SubirImagen" (click)="obtenerLigaId(usua._id)" (click)="limpiarImagen()"><i class="bi bi-images"></i></button>
-            <button type="button" class="btn btn-primary"  [routerLink]="['/Torneos', usua._id]"
+            <button type="button" class="btn btn-outline-secondary"  [routerLink]="['/Torneos', usua._id]"
             data-bs-toggle="modal"><i class="bi bi-files"></i></button>
           </div>
           <h5 *ngIf="(_usuarioService.obtenerIdentidad().rol ===  'ROL_ADMINAPP') ">Usuario: <Strong>{{usua.usuario.usuario}}</Strong> </h5>
@@ -57,7 +57,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Agregar</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Agregar una liga</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -74,8 +74,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
-                (click)="AgregarLiga()">agregar</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-success"
+                (click)="AgregarLiga()">Listo</button>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
+              <button type="button" data-bs-dismiss="modal" class="btn btn-success"
                 (click)="EditarLiga(ModelIdLiga._id)">Guardar Cambios</button>
             </div>
           </div>
@@ -117,7 +117,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">ELIMINAR Liga</h5>
+              <h5 class="modal-title" id="staticBackdropLabel">Eliminar Liga</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -125,7 +125,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                 (click)="eliminarLiga(ModelIdLiga._id)">Eliminar</button>
             </div>
           </div>
