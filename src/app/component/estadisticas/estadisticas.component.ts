@@ -26,7 +26,7 @@ export class EstadisticasComponent implements OnInit {
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
   };
-  public barChartLabels: Label[] = ['GOLES POR EQUIPOS'];
+  public barChartLabels: Label[] = ['Puntos por equipo'];
 
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;

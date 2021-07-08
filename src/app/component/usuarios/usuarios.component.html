@@ -2,33 +2,27 @@
   <div class="container">
     <div class="row">
       <div class="col-sm">
-        <h1 class="display-3">USUARIOS</h1>
-
-
-
-
-
+        <a class="back btn-primary" href="javascript:window.history.go(-1);"><i class="bi bi-arrow-left"></i></a>
+        <h1 class="tit display-3">USUARIOS</h1>
+        <hr>
+        <br>
         <div id="Tabladeusers" class="row row-cols-2   row-cols-md-3 row-cols-lg-5 row-cols-g-lg-3 row-cols-g-5">
           <div class="col"  *ngFor="let usua of usuarios">
-            <div class="card text-white bg-dark mb-4 h-50">
-              <div class="card-body">
-                <br><br>
+            <div class="card text-white mb-4 h-50">
 
-                <h1 class="card-title">{{ usua.usuario }}</h1><br><br><br>
-                <div class="card-text">
-                  <div class="btn" role="group" aria-label="Basic example">
+
+                <h1 class="t card-title">{{ usua.usuario }}</h1><br><br><br>
+                  <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <h5 *ngIf="(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )">ADMINISTRADOR</h5>
-                    <button type="button" class="btn btn-outline-dark"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
+                    <button  type="button" class="btn btn-outline-secondary"*ngIf="!(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#EditarUser">Editar</button>
-                    <button type="button" class="btn btn-outline-dark"*ngIf="usua.rol === 'ROL_USER' && !(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
+                    <button  type="button" class="btn btn-outline-secondary"*ngIf="usua.rol === 'ROL_USER' && !(((usua.rol == 'ROL_ADMINAPP') && (usua.usuario != _usuarioService.obtenerIdentidad().usuario))  )" (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#EliminarUser">Eliminar</button>
-                    <button type="button" class="btn btn-outline-dark"  (click)="obtenerUsuarioId(usua._id)"
+                    <button  type="button" class="btn btn-outline-secondary"  (click)="obtenerUsuarioId(usua._id)"
                     data-bs-toggle="modal" data-bs-target="#verUsuario">Ver</button>
+
                   </div>
-                </div>
 
-
-              </div>
             </div>
           </div>
 

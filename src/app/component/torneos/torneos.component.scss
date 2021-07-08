@@ -17,7 +17,7 @@ img{
 }
 
 .bi-gear-fill:hover{
-  color: #ffa710;
+  color: #58799D;
 }
 
 .item{
@@ -41,7 +41,7 @@ img{
   font-size:15px;
   transition:1s;
   cursor:pointer;
-  color:#ffa710
+  color:#58799D;
 }
 
 .card:hover{
@@ -79,4 +79,31 @@ img{
 .card{
   margin-right: 62px;
 }
+.back{
+  background-color: #58799D;
+  font-size: 45px;
+  border-radius: 10px;
+  text-align: right;
+  margin: 10px;
+  margin-left: 1100px;
+}
 
+.back:hover{
+  border-radius: 10px;
+  background-color: #1BBC9B;
+}
+
+.nombre{
+  text-align: center;
+  font-size: 60px;
+  font-family: sans-serif;
+}
+
+.btn:hover{
+  background-color: #2D3E50;
+}
+
+.imgTabla{
+  width: 50px;
+  height: auto;
+}

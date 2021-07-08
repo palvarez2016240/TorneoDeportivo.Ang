@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/model/usuario.model';
+import { GLOBAL } from 'src/app/service/global.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -15,9 +16,11 @@ export class UsuariosComponent implements OnInit {
   userActualizado;
   usuarioIDModel: Usuario;
   usuarios;
+  public url;
   public identidad;
   constructor(public _usuarioService: UsuarioService, private _router: Router) {
     this.usuarioIDModel = new Usuario('', '', '', '', '', '', '', '');
+    this.url = GLOBAL.url
   }
 
 

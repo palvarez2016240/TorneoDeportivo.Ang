@@ -7,13 +7,13 @@
        (click)='limpiarLabel()'>AGREGAR LIGA</button>
       <br><br><br>
 
-
+      <div class="row row-cols-1 row-cols-md-3 g-3">
       <div class="card" style="width: 18rem;" *ngFor="let usua of liga">
         <img *ngIf="usua.imagen" [src]="this.url + 'obtenerImagenLiga/'+ usua.imagen" class="card-img-top" alt="...">
         <img *ngIf="usua.imagen === null" src="/assets/img/equipos/sin_logo.png" class="imgs card-img-top" alt="...">
         <div class="card-body" >
           <h5 class="card-title">{{ usua.nombres }}</h5>
-          <div class="btn-group h" role="group" aria-label="Basic example">
+          <div class="b3tn-group h" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-outline-secondary" (click)="obtenerLigaId(usua._id)"
             data-bs-toggle="modal" data-bs-target="#EditarUser"><i class="bi bi-pencil-square"></i></button>
             <button type="button" class="btn btn-outline-secondary" (click)="obtenerLigaId(usua._id)"
@@ -26,7 +26,7 @@
           <h5 *ngIf="(_usuarioService.obtenerIdentidad().rol ===  'ROL_ADMINAPP') ">Usuario: <Strong>{{usua.usuario.usuario}}</Strong> </h5>
         </div>
       </div>
-
+    </div>
 
       <!--SUBIR IMAGEN LIGA-->
       <div class="modal fade " id="SubirImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -207,3 +207,18 @@ h3{
     #4285f4
   ); /*Button color when hover*/
 }
+
+.back{
+  background-color: #58799D;
+  font-size: 45px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px;
+  max-width: 70px;
+  margin-bottom: -70px;
+}
+
+.back:hover{
+  border-radius: 10px;
+  background-color: #1BBC9B;
+}
